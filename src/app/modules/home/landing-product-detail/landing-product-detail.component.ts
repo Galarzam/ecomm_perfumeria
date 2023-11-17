@@ -1,0 +1,71 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HomeService } from '../_services/home.service';
+import { AuthService } from '../../auth-profile/_services/auth.service';
+import { CartShopsService } from '../_services/cart-shops.service';
+
+@Component({
+  selector: 'app-landing-product-detail',
+  templateUrl: './landing-product-detail.component.html',
+  styleUrls: ['./landing-product-detail.component.css']
+})
+export class LandingProductDetailComponent implements OnInit {
+
+  product_selected:any = null;
+  slug_product:any = null; 
+  product_relateds:any = [];
+
+  constructor(
+    public _homeService:HomeService,
+    public router:Router,
+    public activeRouter: ActivatedRoute,
+    public _authService: AuthService,
+    public _cartService: CartShopsService,
+  ) { }
+  ngOnInit(): void {
+    this.activeRouter.params.subscribe((resp:any)=> {
+      this.slug_product = resp["slug"] || "";
+    })
+    this._homeService.detailProduct(this.slug_product).subscribe((resp:any) =>{
+      console.log(resp);
+      if(resp.message == 403){
+        this.router.navigateByUrl("/");
+      }else{
+        this.product_selected = resp.product_detail;
+        this.product_relateds = resp.product_relateds;
+      }
+    })
+  }
+
+  addCart(product_selected_modal:any){
+    if(!this._authService.user){
+      alert("Necesitas registrarte");
+      return;
+    }
+  
+
+    let data = {
+      user_id: this._authService.user.id,
+      product_id: product_selected_modal.id,
+      type_discount: null,
+      discount: null,
+      cantidad: 1,
+      code_cupon: null,
+      code_discount: null,
+      precio_unitario: product_selected_modal.price_soles,
+      subtotal: product_selected_modal.price_soles,
+      total: product_selected_modal.price_soles * 1,
+    }
+    this._cartService.addCartShop(data).subscribe((resp:any) => {
+      console.log(resp);
+      if(resp.message == 403){
+        alert(resp.message_text);
+        return;
+      }else{ 
+        this._cartService.changeCart(resp.cart_shop);
+        alert("El producto se agrego al carrito");
+      }
+    })
+  }
+  
+}

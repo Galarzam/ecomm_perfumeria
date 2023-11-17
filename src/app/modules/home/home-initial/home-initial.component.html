@@ -1,0 +1,170 @@
+<!-- hero area -->
+<div class="container-lg home_2_hero_wrp">
+    <div class="home_2_hero">
+        <div class="container">
+            <div class="hero_slider_active">
+              <ng-container *ngFor="let slider of sliders">
+                <div class="single_hero_slider bg-3">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-12">
+                                <div class="hero_img">
+                                    <img loading="lazy" style="max-height: initial !important;"  [src]="slider.imagen" alt="phone">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </ng-container>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  
+  <!-- top ranking -->
+  <section class="top_ranking section_padding_b">
+      <div class="container">
+          <h2 class="section_title_2 mb-0">Rango más alto</h2>
+          <div class="row">
+              <ng-container *ngFor="let group_categorie of group_categories_product">
+                <div class="col-xl-3 col-lg-4 col-6">
+                    <h4 class="single_topr_title">{{ group_categorie.name }}</h4>
+                    <ng-container *ngFor="let product of group_categorie.products">
+                      <div class="single_top_ranking">
+                          <div class="topr_img" style="width: auto;">
+                              <a [routerLink]="['/producto/', product.slug]">
+                                  <img loading="lazy" style="width: 60.5px !important;"  [src]="product.imagen" alt="product">
+                              </a>
+                              <span class="tag">1</span>
+                          </div>
+                          <div class="topr_content">
+                              <a [routerLink]="['/producto/', product.slug]">
+                                  <h4>{{ product.title.length > 15 ? product.title.slice(0, 30)+"..." : product.title }} </h4>
+                              </a>
+                              <div class="price">
+                                  <span class="org_price">{{ product.price_soles }} PEN</span>
+                              </div>
+                          </div>
+                      </div>
+                    </ng-container>
+                </div>
+              </ng-container>
+          </div>
+      </div>
+    </section>
+  
+  <!-- new arrive -->
+  <section class="new_arrive section_padding_b">
+      <div class="container">
+          <div class="d-flex align-items-start justify-content-between">
+              <h2 class="section_title_2">Los recién llegados</h2>
+              <div class="seemore_2 pt-2">
+                  <a href="/lista-de-productos">Ver más <span><i class="las la-angle-right"></i></span></a>
+              </div>
+          </div>
+          <div class="row gy-4">
+            <ng-container *ngFor="let products_aletorio of products_aletorio_a">
+              <div class="col-lg-3 col-sm-6">
+                  <div class="single_new_arrive">
+                      <div class="sna_img">
+                        <img loading="lazy"  class="prd_img" [src]="products_aletorio.imagen" alt="product">                         
+                         <span class="tag">Nuevos</span>
+                          <div class="prodcut_hovcont">
+                              <a href="javascript:void(0)" class="icon open_quickview" (click)="openModal(products_aletorio)" tabindex="0">
+                                 <i class="icon-search-left"></i>
+                              </a>
+                              <a href="#" class="icon" tabindex="0">
+                                  <i class="icon-heart"></i>
+                              </a>
+                          </div>
+                      </div>
+                      <div class="sna_content">
+                          <a [routerLink]="[ '/producto/', products_aletorio.slug ]">
+                              <h4>{{ products_aletorio.title.length > 15 ? products_aletorio.title.slice(0, 20)+"..." : products_aletorio.title }}</h4>
+                          </a>
+                          <div class="ratprice">
+                              <div class="price">
+                                  <span class="org_price">S/{{ products_aletorio.price_soles }}</span>
+                                  <!-- <span class="prev_price">$55.45</span> -->
+                              </div>
+                          </div>
+                          <div class="product_adcart">
+                              <button class="default_btn" (click)="addCart(products_aletorio)">Añadir a la cesta</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </ng-container>
+          </div>
+      </div>
+    </section>
+  
+  <!-- ad banner -->
+  <div class="ad_banner_area section_padding_b">
+      <div class="container" >
+        <div class="container" >
+          <a href="#">
+             
+              <picture>
+                  <source media="(min-width: 1px)" srcset="assets/images/GitBellky.gif">
+                  <img loading="lazy" style="width: 65em; height: 30em;" src="assets/images/offer-mobile-3.jpg" alt="ad">
+              </picture>
+          </a>
+      </div>
+  </div>
+  
+  <!-- recomended -->
+  <section class="new_arrive section_padding_b">
+      <div class="container">
+          <div class="d-flex align-items-start justify-content-between">
+              <h2 class="section_title_2">Recomendado para ti</h2>
+              <div class="seemore_2 pt-2">
+                  <a href="/lista-de-productos">Ver más <span><i class="las la-angle-right"></i></span></a>
+              </div>
+          </div>
+          <div class="row gy-4">
+            <ng-container *ngFor="let products_aletorio of products_aletorio_b">
+              <div class="col-lg-3 col-sm-6">
+                  <div class="single_new_arrive">
+                      <div class="sna_img">
+                          <img loading="lazy"  class="prd_img" [src]="products_aletorio.imagen" alt="product">
+                          <span class="tag">Nuevos</span>
+                          <div class="prodcut_hovcont">
+                              <a href="javascript:void(0)" class="icon open_quickview" (click)="openModal(products_aletorio)" tabindex="0">
+                                 <i class="icon-search-left"></i>
+                              </a>
+                              <a href="#" class="icon" tabindex="0">
+                                  <i class="icon-heart"></i>
+                              </a>
+                          </div>
+                      </div>
+                      <div class="sna_content">
+                          <a [routerLink]="['/producto/', products_aletorio.slug]">
+                              <h4>{{ products_aletorio.title.length > 15 ? products_aletorio.title.slice(0, 20)+"..." : products_aletorio.title }}</h4>
+                          </a>
+                          <div class="ratprice">
+                              <div class="price">
+                                  <span class="org_price">{{ products_aletorio.price_soles }} PEN</span>
+                                  <!-- <span class="prev_price">$55.45</span> -->
+                              </div>
+                          </div>
+                          <div class="product_adcart">
+                              <button class="default_btn" (click)="addCart(products_aletorio)">Añadir al Carrito</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </ng-container>
+          </div>
+      </div>
+    </section>
+
+
+
+    <!-- product quick view -->
+    <div class="product_quickview">
+        <ng-container *ngIf="product_selected_modal">
+            <app-c-detail-product [product_selected_modal]="product_selected_modal" ></app-c-detail-product>    
+        </ng-container>
+    </div>

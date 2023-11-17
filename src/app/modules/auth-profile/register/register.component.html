@@ -1,0 +1,68 @@
+<!-- breadcrumbs -->
+<div class="container">
+    <div class="breadcrumbs">
+        <a href="index-1.html"><i class="las la-home"></i></a>
+        <a href="#" class="active">Registro</a>
+    </div>
+</div>
+
+<!--register wrapper-->
+<div class="register_wrap section_padding_b">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-7 col-md-9">
+                <div class="register_form padding_default shadow_sm">
+                    <h4 class="title_2">Crea una cuenta</h4>
+                    <p class="mb-4 text_md">Regístrese aquí si es un cliente nuevo.</p>
+                    <form action="">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="single_billing_inp">
+                                    <label>Nombre Completos: <span>*</span></label>
+                                    <input type="text" [(ngModel)]="name" name="name" placeholder="Nombre Completo">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="single_billing_inp">
+                                    <label>Apellidos Completos: <span>*</span></label>
+                                    <input type="text" [(ngModel)]="surname" name="surname" placeholder="Apellidos Completos">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="single_billing_inp">
+                                    <label>Correo Electronico:<span>*</span></label>
+                                    <input type="email" [(ngModel)]="email" name="email" placeholder="example@mail.com">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="single_billing_inp">
+                                    <label>Contraseña: <span>*</span></label>
+                                    <input type="password" [(ngModel)]="password" name="password" placeholder="password">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="single_billing_inp">
+                                    <label>Confirmar Contraseña: <span>*</span></label>
+                                    <input type="password" [(ngModel)]="repit_password" name="repit_password" placeholder="confirmar el password">
+                                </div>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <button type="submit" (click)="registro()" class="default_btn xs_btn rounded px-4 d-block w-100">crear una cuenta</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <div class="dif_regway my-3">
+                        <span class="txt">Registrarse</span>
+                    </div>
+
+                    
+
+                    <p class="text-center mt-3 mb-0">Ya tienes una cuenta.? <a href="/auth/login" class="text-color">Inicia sesión ahora</a></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

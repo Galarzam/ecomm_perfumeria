@@ -1,0 +1,49 @@
+<!-- breadcrumbs -->
+<div class="container">
+    <div class="breadcrumbs">
+        <a href="#"><i class="las la-home"></i></a>
+        <a href="#" class="active">Iniciar sesión</a>
+    </div>
+</div>
+
+<!--Login wrap-->
+<div class="register_wrap section_padding_b">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-7 col-md-9">
+                <div class="register_form padding_default shadow_sm">
+                    <h4 class="title_2">Iniciar Sesión</h4>
+                    <p class="mb-4 text_md">Inicie sesión si es un cliente recurrente</p>
+                    <form action="">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="single_billing_inp">
+                                    <label>Ingrese su correo Electronico <span>*</span></label>
+                                    <input type="email" [(ngModel)]="email" name="email" placeholder="correoelectronico@gmail.com">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="single_billing_inp">
+                                    <label>Ingrese su password <span>*</span></label>
+                                    <input type="password" [(ngModel)]="password" name="password" placeholder="Escriba su password">
+                                </div>
+                            </div>
+                           
+                            <div class="col-12 mt-3">
+                                <button type="submit" (click)="login()" class="default_btn xs_btn rounded px-4 d-block w-100">Iniciar Sesión</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <div class="dif_regway my-3">
+                        <span class="txt">Iniciar Sesion</span>
+                    </div>
+
+                    <p class="text-center mt-3 mb-0">¿No tienes una cuenta? <a href="/auth/registro" class="text-color">Registrate ahora</a></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

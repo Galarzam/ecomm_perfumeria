@@ -1,0 +1,72 @@
+<!-- breadcrumbs -->
+<div class="container">
+    <div class="breadcrumbs">
+        <a href="#"><i class="las la-home"></i></a>
+        <a href="#">Producto</a>
+        <a href="#" class="active" *ngIf="product_selected">{{ product_selected.title }}</a>
+    </div>
+  </div>
+  
+  <!-- product view -->
+  <div class="product_view_wrap section_padding_b">
+    <div class="container">
+        <ng-container *ngIf="product_selected">
+          <app-c-detail-product [is_landing]="true" [product_selected_modal]="product_selected"></app-c-detail-product>
+        </ng-container>
+        
+        <div class="product_view_tabs mt-4">
+            <div class="pv_tab_buttons" class="spec_text">
+                <div class="pbt_single_btn active" data-target=".info">Información del producto</div>
+            </div>
+            <div class="pb_tab_content info active">
+                <div class="row" *ngIf="product_selected">
+                    <div class="col-lg-8">
+                        <div class="pbt_info_text" [innerHTML]="product_selected.description">
+  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+  
+  <!-- new arrive -->
+  <section class="new_arrive section_padding_b">
+    <div class="container">
+        <div class="d-flex align-items-start justify-content-between">
+            <h2 class="section_title_2">Productos relacionados</h2>
+        </div>
+        <div class="row gy-4">
+            <div class="col-lg-3 col-sm-6" *ngFor="let product of product_relateds">
+                <div class="single_new_arrive">
+                    <div class="sna_img">
+                        <a [href]="'/producto/'+product.slug">
+                            <img loading="lazy"  class="prd_img" [src]="product.imagen" alt="product">
+                        </a>
+                        <span class="tag">Nuevo</span>
+                        <div class="prodcut_hovcont">
+                            <a [href]="'/producto/'+product.slug" class="icon" tabindex="0">
+                                <i class="icon-search-left"></i>
+                            </a>
+                            <a href="#" class="icon" tabindex="0">
+                                <i class="icon-heart"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sna_content">
+                        <a [href]="'/producto/'+product.slug">
+                            <h4>{{ product.title.length > 15 ? product.title.slice(0, 20)+"..." : product.title }}</h4>
+                        </a>
+                        <div class="ratprice">
+                            <div class="price">
+                                <span class="org_price">S/{{ product.price_soles }}</span>
+                            </div>
+                        </div>
+                        <div class="product_adcart">
+                            <button class="default_btn" (click)="addCart(product)">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>

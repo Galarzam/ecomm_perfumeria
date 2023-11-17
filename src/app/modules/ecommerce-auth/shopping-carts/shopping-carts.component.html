@@ -1,0 +1,95 @@
+    <!-- breadcrumbs -->
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="/"><i class="las la-home"></i></a>
+            <a href="#" class="active">Carrito de Compras</a>
+        </div>
+    </div>
+
+    <!-- shopping cart -->
+    <div class="cart_area section_padding_b">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h4 class="shop_cart_title sopcart_ttl d-none d-lg-flex">
+                        <span>Producto</span>
+                        <span>Cantidad</span>
+                        <span>Precio Total</span>
+                    </h4>
+
+                    <div class="shop_cart_wrap">
+                        <ng-container *ngFor="let cart of listCarts">   
+                            <div class="single_shop_cart d-flex align-items-center flex-wrap">
+                            <div class="cart_img mb-4 mb-md-0">
+                                <img loading="lazy"  [src]="cart.product.imagen" alt="product">
+                            </div>
+                            <div class="cart_cont">
+                                <a [href]="'/producto/'+cart.product.slug">
+                                    <h5>{{ cart.product.title }}</h5>
+                                </a>
+                                <p class="price">
+                                    <small class="text-dark" *ngIf="cart.code_cupon">CUPON: {{ cart.code_cupon }} </small>
+                                    <br>
+                                    <span class="prev_price mx-1" *ngIf="cart.code_cupon">S/{{ cart.precio_unitario }}</span>
+                                    <span class="disc_tag ms-3" *ngIf="cart.code_cupon && cart.type_discount == 1">-{{ cart.discount }}%</span>
+                                    <span class="disc_tag ms-3" *ngIf="cart.code_cupon && cart.type_discount == 2">- S/{{ cart.discount }}</span>
+                                    
+                                    S/{{ cart.subtotal }}
+                                </p>
+                            </div>
+                            <div class="cart_qnty d-flex align-items-center ms-md-auto">
+                                <div class="cart_qnty_btn" (click)="reduceC(cart)">
+                                    <i class="las la-minus"></i>
+                                </div>
+                                <div class="cart_count">{{ cart.cantidad }}</div>
+                                <div class="cart_qnty_btn" (click)="addC(cart)">
+                                    <i class="las la-plus"></i>
+                                </div>
+                            </div>
+                            <div class="cart_price ms-auto">
+                                <p>S/{{ cart.total }}</p>
+                            </div>
+                            <div class="cart_remove ms-auto" (click)="deleteItem(cart)">
+                                 <i class="icon-trash"></i>
+                            </div>
+                            </div>
+                        </ng-container>           
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 mt-4 mt-lg-0">
+                    <div class="cart_summary">
+                        <h4>Resumen del Pedido</h4>
+                         <div class="cartsum_text d-flex justify-content-between">
+                             <p class="text-semibold">Subtotal</p>
+                             <p class="text-semibold">{{ TotalPrice }} PEN</p>
+                         </div>
+                         <div class="cartsum_text d-flex justify-content-between">
+                            <p>Entrega</p>
+                            <p>Gratis</p>
+                        </div>
+                        <div class="cartsum_text d-flex justify-content-between">
+                            <p>Impuestos</p>
+                            <p>Gratis</p>
+                        </div>
+                        <div class="cart_sum_total d-flex justify-content-between">
+                            <p>Total</p>
+                             <p>{{ TotalPrice }} PEN</p>
+                        </div>
+                        <div class="cart_sum_total d-flex justify-content-between">
+                            <p>Total USD</p>
+                             <p>${{ (TotalPrice/ConversationDolar).toFixed(2) }}</p>
+                        </div>
+                        <div class="cart_sum_coupon">
+                            <input type="text" placeholder="Aplicar Cupon" [(ngModel)]="cupones">
+                            <button (click)="applyCupon()">Aplicar</button>
+                        </div>
+                        <div class="cart_sum_pros">
+                            <a routerLink="/proceso-de-pago" class="btn btn btn-dark">Proceso de Pago</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

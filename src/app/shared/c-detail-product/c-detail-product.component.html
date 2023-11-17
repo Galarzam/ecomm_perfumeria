@@ -1,0 +1,63 @@
+<div [ngClass]="{'prodquick_wrap position-relative': !is_landing}">
+    <div class="close_quickview" *ngIf="!is_landing">
+        <i class="las la-times"></i>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="product_view_slider">
+                <div class="single_viewslider" *ngFor="let imagen of product_selected_modal.images">
+                    <img loading="lazy"  [src]="imagen.imagen" alt="product">
+                </div>
+            </div>
+            <div class="product_viewslid_nav">
+                <div class="single_viewslid_nav" *ngFor="let imagen of product_selected_modal.images">
+                    <img loading="lazy"  [src]="imagen.imagen" alt="product">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="product_info_wrapper">
+                <div class="product_base_info">
+                    <h1>{{product_selected_modal.title}}</h1>
+                    <div class="product_other_info">
+                        <p><span class="text-green">Stock Disponible:</span><span class="text-green">{{product_selected_modal.stock}} </span></p>
+                      
+                        <p><span class="text-semibold">Categoria:</span>{{product_selected_modal.categorie.name}} </p>
+                        <p><span class="text-semibold">SKU:</span>{{product_selected_modal.sku}} </p>
+                    </div>
+                    <div class="price mt-3 mb-3 d-flex align-items-center">
+                        <span class="org_price ms-2">S/{{product_selected_modal.price_soles}} </span>
+                    </div>
+                    <div class="pd_dtails text-justify">
+                        <p>{{product_selected_modal.resumen}}</p>
+                    </div>
+
+                    
+
+                    <div class="cart_qnty ms-md-auto">
+                        <p>Cantidad</p>
+                        <div class="d-flex align-items-center">
+                            <div class="cart_qnty_btn" (click)="reduceQ()">
+                                <i class="las la-minus"></i>
+                            </div>
+                            <div class="cart_count">{{quantity}} </div>
+                            <div class="cart_qnty_btn" (click)="addQ()">
+                                <i class="las la-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product_buttons">
+                    <a href="#" onclick="return false;" (click)="addCart(product_selected_modal)" class="default_btn me-sm-3 me-2 px-2 px-lg-4">
+                        <i class="icon-cart me-2"></i>
+                         Añadir al Carrito
+                </a>
+                </div>
+                <div class="share_icons footer_icon d-flex">
+                    <a href="https://www.facebook.com/profile.php?id=100025054795944"><i class="lab la-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
